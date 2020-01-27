@@ -8,9 +8,12 @@ const Yelp = {
                 Authorization: `Bearer ${apiKey}`,
             }
         }).then(response=>{
+            if(!response.ok){
+                return [];
+            }
             return response.json();
         }).then(jsonResponse=>{
-            if(jsonResponse.businesses){
+            if(jsonResponse.businesses.length){
                 console.log(jsonResponse.businesses); //массив обьектов
                 return jsonResponse.businesses.map(business=>{
                     return ({
@@ -27,7 +30,7 @@ const Yelp = {
                     });
                 });
             }
-        });
+        }).catch(error=> console.log(error));
     }
 };
 

@@ -3,14 +3,12 @@ import "./BusinessList.css";
 import Business from "../business/business";
 
 class BusinessList extends React.Component {
-    render(){
+  
+  render(){
         return(
       <div className="BusinessList">
         {
-        this.props.businesses.map(
-          business=> {
-            return <Business business={business} key={business.id} />
-          })
+          this.props.businesses === undefined ? <div>your search has no results</div> : this.props.businesses.map(business=><Business business={business} key={business.id} />)
         }
       </div>
             
